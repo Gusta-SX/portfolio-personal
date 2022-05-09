@@ -537,6 +537,9 @@ h3.my-profession {
   flex: 0 0 33.33%;
   max-width: 33.33%;
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .portfolio .portfolio-inner {
   border: 5px solid var(--bg-black-100);
