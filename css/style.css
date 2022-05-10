@@ -407,11 +407,11 @@ h3.my-profession {
   font-weight: 700;
   color: var(--text-black-900);
 }
-.about-content .timeline-box {
+.timeline-box {
   flex: 0 0 100%;
   max-width: 100%;
 }
-.about-content .timeline {
+.timeline {
   background-color: var(--bg-black-100);
   padding: 30px 15px;
   border: 1px solid var(--bg-black-50);
@@ -419,15 +419,15 @@ h3.my-profession {
   width: 100%;
   position: relative;
 }
-.about-content .timeline-item {
+.timeline-item {
   position: relative;
   padding-left: 37px;
   padding-bottom: 50px;
 }
-.about-content .timeline-item:last-child {
+.timeline-item:last-child {
   padding-bottom: 0;
 }
-.about-content .timeline-item::before {
+.timeline-item::before {
   content: '';
   width: 1px;
   position: absolute;
@@ -436,7 +436,7 @@ h3.my-profession {
   top: 0;
   background-color: var(--skin-color);
 }
-.about-content .timeline-item .circle-dot {
+.timeline-item .circle-dot {
   position: absolute;
   left: 0;
   top: 0;
@@ -445,28 +445,39 @@ h3.my-profession {
   border-radius: 50%;
   background-color: var(--skin-color);
 }
-.about-content .timeline-date {
+.timeline-date {
   font-weight: 400;
   font-size: 13px;
   margin-bottom: 12px;
   color: var(--text-black-700);
 }
-.about-content .timeline-date .fa {
+.timeline-date .fa {
   margin-right: 5px;
 }
-.about-content .timeline-title {
+.timeline-title {
   font-weight: 700;
   font-size: 16px;
   color: var(--text-black-900);
 }
-.about-content .timeline-text.company {
+.timeline-company {
+  font-size: 14px;
+  text-align: justify;
+  color: var(--text-black-700);
   margin-bottom: 15px;
 }
-.about-content .timeline-text {
+.timeline-text {
   line-height: 20px;
   font-size: 14px;
   text-align: justify;
   color: var(--text-black-700);
+  display: none;
+}
+.timeline-text.ativo {
+  display: block;
+}
+.timeline-open {
+  cursor: pointer;
+  color: var(--skin-color);
 }
 
 /* SERVIÇO */
@@ -530,7 +541,9 @@ h3.my-profession {
   margin-bottom: 40px;
 }
 
-.portfolio-heading h2,
+.portfolio-heading h2 {
+  color: var(--text-black-900);
+}
 .portfolio h4 {
   color: var(--text-black-700);
 }
@@ -541,6 +554,10 @@ h3.my-profession {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all .4s ease-in-out;
+}
+.portfolio .portfolio-item:hover {
+  transform: scale(1.02);
 }
 .portfolio .portfolio-inner {
   border: 5px solid var(--bg-black-100);
