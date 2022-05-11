@@ -7,7 +7,12 @@
   <title>Gustavo's Portifólio</title>
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css//skins/color-1.css">
+  <link rel="stylesheet" href="css/style-switcher.css">
+  <link rel="stylesheet" href="css/skins/color-1.css" class="alternate-style" title="color-1">
+  <link rel="stylesheet" href="css/skins/color-2.css" class="alternate-style" title="color-2" disabled>
+  <link rel="stylesheet" href="css/skins/color-3.css" class="alternate-style" title="color-3" disabled>
+  <link rel="stylesheet" href="css/skins/color-4.css" class="alternate-style" title="color-4" disabled>
+  <link rel="stylesheet" href="css/skins/color-5.css" class="alternate-style" title="color-5" disabled>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
@@ -23,11 +28,11 @@
         <span></span>
       </div>
       <ul class="nav">
-        <li><a href="#" class="active"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href="#"><i class="fa fa-user"></i>Sobre</a></li>
-        <li><a href="#"><i class="fa fa-list"></i>Serviços</a></li>
-        <li><a href="#"><i class="fa fa-briefcase"></i>Portifólio</a></li>
-        <li><a href="#"><i class="fa fa-home"></i>Contato</a></li>
+        <li><a href="#home" class="active"><i class="fa fa-home"></i>Home</a></li>
+        <li><a href="#about"><i class="fa fa-user"></i>Sobre</a></li>
+        <li><a href="#service"><i class="fa fa-list"></i>Serviços</a></li>
+        <li><a href="#portfolio"><i class="fa fa-briefcase"></i>Portifólio</a></li>
+        <li><a href="#contact"><i class="fa-solid fa-comments"></i>Contato</a></li>
       </ul>
     </div>
 
@@ -35,12 +40,12 @@
     <div class="main-content">
 
       <!-- Home Section -->
-      <section class="home section">
+      <section class="home active section" id="home">
         <div class="container">
           <div class="row">
             <div class="home-info padd-15">
               <h3 class="hello">Olá, meu nome é <span class="name">Gustavo Xavier</span></h3>
-              <h3 class="my-profession">Eu sou um <span class="typing">desenvolvedor</span></h3>
+              <h3 class="my-profession">Eu sou um <span class="typing"></span></h3>
               <p>Eu sou um Desenvolvedor Full-Stack Web e Mobile. Atualmente, estou Cursando Análise e Desenvolvimento de Sistemas na Universidade Católica de Brasília.</p>
               <a href="#contact" class="btn hire-me">Entre em contato</a>
             </div>
@@ -52,7 +57,7 @@
       </section>
 
       <!-- About Section -->
-      <section class="about section">
+      <section class="about section" id="about">
         <div class="container">
           <div class="row">
             <div class="section-title padd-15">
@@ -64,7 +69,7 @@
               <div class="row">
                 <div class="about-text padd-15">
                   <h3>Eu sou Gustavo Xavier e <span>Web Desenvolvedor</span></h3>
-                  <p>Em busca de novas oportunidades, sou um desenvolvedor apaixonado por codificação e aventuras. Por ser positivo, curioso e muito dedicado, passo meu tempo estudando novas tecnologias e me aprimorando a cada dia. Tento sempre aperfeiçoar o que faço e embora nunca seja perfeito, faço o melhor para me aproximar. </p>
+                  <p>Em busca de novas oportunidades, sou um desenvolvedor apaixonado por codificação e aventuras. Por ser positivo, curioso e muito dedicado, passo meu tempo estudando novas tecnologias e me aprimorando a cada dia. Tento sempre aperfeiçoar o que faço e embora nunca seja perfeito, faço o meu melhor para que seja feito com maior maestria possível. </p>
                 </div>
               </div>
               <div class="row">
@@ -100,40 +105,60 @@
                   </div>
                 </div>
                 <div class="skills padd-15">
-                  <div class="row">
-                    <div class="skill-item padd-15">
-                      <h5>Ionic</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 80%;"></div>
-                        <div class="skill-percent">80%</div>
+                  <h3 class="title">Tecnologias</h3>
+                  <div class="row skill-row">
+                    <div class="skill-itens padd-15">
+                      <div class="skill-item">
+                        <i class="fa-brands fa-angular"></i>
+                        <h4>Angular</h4>
+                      </div>
+                      <div class="skill-item">
+                        <img data-img="ionic" src="/img/ionic.svg">
+                        <h4>Ionic</h4>
+                      </div>
+                      <div class="skill-item">
+                        <i class="fa-brands fa-js"></i>
+                        <h4>JavaScript</h4>
+                      </div>
+                      <div class="skill-item">
+                        <i class="fa-brands fa-python"></i>
+                        <h4>Python</h4>
                       </div>
                     </div>
-                    <div class="skill-item padd-15">
-                      <h5>GIT</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 83%;"></div>
-                        <div class="skill-percent">83%</div>
+                    <div class="skill-itens padd-15">
+                      <div class="skill-item">
+                        <i class="fa-brands fa-html5"></i>
+                        <h4>HTML</h4>
+                      </div>
+                      <div class="skill-item">
+                        <i class="fa-brands fa-css3"></i>
+                        <h4>CSS</h4>
+                      </div>
+                      <div class="skill-item">
+                        <i class="fa-brands fa-sass"></i>
+                        <h4>SCSS</h4>
+                      </div>
+                      <div class="skill-item">
+                        <i class="fa-brands fa-php"></i>
+                        <h4>PHP</h4>
                       </div>
                     </div>
-                    <div class="skill-item padd-15">
-                      <h5>JS</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 50%;"></div>
-                        <div class="skill-percent">50%</div>
+                    <div class="skill-itens padd-15">
+                      <div class="skill-item">
+                        <img data-img="vscode" src="/img/vs-code.svg">
+                        <h4>VSCode</h4>
                       </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>Angular</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 57%;"></div>
-                        <div class="skill-percent">57%</div>
+                      <div class="skill-item">
+                        <img data-img="ts" src="/img/typescript.svg">
+                        <h4>TypeScript</h4>
                       </div>
-                    </div>
-                    <div class="skill-item padd-15">
-                      <h5>PHP</h5>
-                      <div class="progress">
-                        <div class="progress-in" style="width: 40%;"></div>
-                        <div class="skill-percent">40%</div>
+                      <div class="skill-item">
+                        <img data-img="firebase" src="/img/firebase.svg">
+                        <h4>Firebase</h4>
+                      </div>
+                      <div class="skill-item">
+                        <i class="fa-brands fa-git-alt"></i>
+                        <h4>GIT</h4>
                       </div>
                     </div>
                   </div>
@@ -196,7 +221,7 @@
       </section>
 
       <!-- Service Section -->
-      <section class="service section">
+      <section class="service section" id="service">
         <div class="container">
           <div class="row">
             <div class="section-title padd-15">
@@ -268,7 +293,7 @@
       </section>
 
       <!-- Portfolio Section -->
-      <section class="portfolio section">
+      <section class="portfolio section" id="portfolio">
         <div class="container">
           <div class="row">
             <div class="section-title padd-15">
@@ -329,7 +354,7 @@
       </section>
 
       <!-- Contact Section -->
-      <section class="contact section">
+      <section class="contact section" id="contact">
         <div class="container">
           <div class="row">
             <div class="section-title padd-15">
@@ -400,7 +425,30 @@
     </div>
   </div>
 
+  <!-- Style Switcher -->
+  <div class="style-switcher">
+    <div class="style-switcher-toggler s-icon">
+      <i class="fas fa-cog fa-spin"></i>
+    </div>
+    <div class="day-night s-icon">
+      <i class="fas fa-moon"></i>
+    </div>
+    <h4>Cores do Tema</h4>
+    <div class="colors">
+      <span data-color class="color-1" onclick="setActiveStyle('color-1')"></span>
+      <span data-color class="color-2" onclick="setActiveStyle('color-2')"></span>
+      <span data-color class="color-3" onclick="setActiveStyle('color-3')"></span>
+      <span data-color class="color-4" onclick="setActiveStyle('color-4')"></span>
+      <span data-color class="color-5" onclick="setActiveStyle('color-5')"></span>
+
+    </div>
+  </div>
+
+
   <!-- JS -->
-  <script type="module" src="js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="js/accordion.js"></script>
+  <script src="js/style-switcher.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
