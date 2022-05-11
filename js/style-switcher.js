@@ -67,7 +67,6 @@ var typed = new Typed(".typing", {
     '',
     'Desenvolvedor Web',
     'Desenvolvedor Mobile',
-    'Estudante'
   ],
   typeSpeed: 100,
   backSpeed: 60,

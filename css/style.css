@@ -740,9 +740,6 @@ h3.my-profession {
     flex-direction: row;
     justify-content: space-around;
   }
-  .about-content .skills .skill-item img {
-    max-width: 90%;
-  }
   .contact .contact-item,
   .portfolio .portfolio-item,
   .service .service-item {
