@@ -752,12 +752,6 @@ h3.my-profession {
     flex: 0 0 100%;
     max-width: 100%;
   }
-  .home-img::after {
-    display: none;
-  }
-  .home-img::before {
-    display: none;
-  }
   .about-content .skill-row {
     display: flex;
     flex-direction: row;
@@ -788,21 +782,15 @@ h3.my-profession {
     flex: 0 0 100%;
     max-width: 100%;
   }
-  .home .home-img {
-    display: flex;
-    margin: auto;
-    margin-top: 15%;
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-  .home-img::after {
-    display: none;
-  }
+  .home-img::after,
   .home-img::before {
     display: none;
   }
 }
 @media (max-width: 554px) {
+  body {
+    background: var(--bg-black-50);
+  }
   .portfolio .portfolio-item,
   .contact .contact-item,
   .service .service-item,
@@ -821,5 +809,6 @@ h3.my-profession {
   }
   .section.open {
     display: none;
+    background: var(--bg-black-50);
   }
 }
