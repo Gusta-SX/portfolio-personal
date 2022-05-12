@@ -68,6 +68,8 @@ ul {
   z-index: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  transition: all .3s ease-in-out;
+
 }
 .section.back-section {
   z-index: 1;
@@ -152,6 +154,7 @@ ul {
   white-space: nowrap;
   transition: all 0.3s ease;
   border: none;
+  margin-bottom: 10px;
 }
 .btn:hover {
   transform: scale(1.05);
@@ -173,6 +176,7 @@ ul {
   justify-content: center;
   align-items: center;
   z-index: 10;
+  transition: .3s ease;
 }
 .aside .logo {
   position: absolute;
@@ -183,7 +187,6 @@ ul {
 .aside .logo a {
   color: var(--text-black-900);
   font-weight: 700;
-  /* background: red; */
   padding: 15px 20px;
   font-size: 25px;
   letter-spacing: 5px;
@@ -226,6 +229,10 @@ ul {
   display: none;
   align-items: center;
   justify-content: center;
+  transition: all .2s ease;
+}
+.aside .nav-toggler.open span {
+  background: transparent;
 }
 .aside .nav-toggler span {
   height: 2px;
@@ -242,6 +249,14 @@ ul {
   position: absolute;
   top: -6px;
   left: 0;
+}
+.aside .nav-toggler.open span::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.aside .nav-toggler.open span::after {
+  transform: rotate(-45deg);
+  top: 0;
 }
 .aside .nav-toggler span::after {
   content: '';
@@ -560,7 +575,6 @@ h3.my-profession {
   margin-bottom: 15px;
   color: var(--text-black-900);
   font-weight: 700;
-  text-transform: capitalize;
 }
 .service-item-inner p {
   font-size: 13px;
@@ -703,8 +717,11 @@ h3.my-profession {
 
 /* MEDIA */
 @media (max-width: 1199px) {
+  .section .container {
+    padding-top: 70px;
+  }
   .aside {
-    left: -270px;
+    left: -100%;
   }
   .aside.open {
     left: 0;
@@ -728,6 +745,19 @@ h3.my-profession {
   }
 }
 @media (max-width: 900px) {
+  .home .home-img {
+    display: flex;
+    margin: auto;
+    margin-top: 20%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .home-img::after {
+    display: none;
+  }
+  .home-img::before {
+    display: none;
+  }
   .about-content .skill-row {
     display: flex;
     flex-direction: row;
@@ -740,6 +770,7 @@ h3.my-profession {
     flex: 0 0 50% !important;
     max-width: 50% !important;
   }
+  .home .home-info,
   .about-content .skills,
   .about-content .personal-info,
   .personal-info .info-item {
@@ -753,7 +784,6 @@ h3.my-profession {
   .about-content .experience,
   .portfolio .portfolio-item,
   .contact .contact-item,
-  .home .home-info,
   .contact .contact-form .col-6 {
     flex: 0 0 100%;
     max-width: 100%;
@@ -761,7 +791,7 @@ h3.my-profession {
   .home .home-img {
     display: flex;
     margin: auto;
-    margin-top: 20%;
+    margin-top: 15%;
     flex: 0 0 100%;
     max-width: 100%;
   }
@@ -782,5 +812,14 @@ h3.my-profession {
   }
   .about-content .skill-row {
     flex-direction: column;
+  }
+  .aside {
+    width: 100%;
+  }
+  .aside .nav-toggler.open {
+    left: 20px;
+  }
+  .section.open {
+    display: none;
   }
 }
