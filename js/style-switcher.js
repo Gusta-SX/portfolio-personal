@@ -1,20 +1,44 @@
+// outside click
+function outsideClick(element, events, callback) {
+  const html = document.documentElement;
+  const outside = 'data-outside';
+
+  if(!element.hasAttribute(outside)) {
+    events.forEach((userEvent) => {
+      setTimeout(() => {html.addEventListener(userEvent, handleOutside)});
+    })
+    element.setAttribute(outside, '');
+  }
+  
+  function handleOutside(event) {
+    if(!element.contains(event.target)) {
+      element.removeAttribute(outside, '');
+      events.forEach((userEvent) => {
+        html.removeEventListener(userEvent, handleOutside);
+      })
+      callback();
+    }
+  }
+}
+
 // toggle style switcher
+const events = ['click', 'touchstart', 'scroll'];
 const styleSwitcher = document.querySelector('.style-switcher-toggler');
 const switcherOpen = document.querySelector('.style-switcher');
-styleSwitcher.addEventListener('click', () => {
-  switcherOpen.classList.toggle('open');
-})
 
-// hide style on scroll
-window.addEventListener('scroll', () => {
-  if(switcherOpen.classList.contains('open')) {
+function openSwitcher() {
+  switcherOpen.classList.toggle('open');
+  outsideClick(switcherOpen, events, () => {
     switcherOpen.classList.remove('open');
-  }
+  });
+}
+
+events.forEach(event => {
+  styleSwitcher.addEventListener(event, openSwitcher)
 })
 
 // theme colors
 const alternateStyles = document.querySelectorAll(".alternate-style");
-
 function setActiveStyle(color) {
   alternateStyles.forEach((style) => {
     if (color === style.getAttribute("title")) {
@@ -23,6 +47,7 @@ function setActiveStyle(color) {
       style.setAttribute("disabled", "true");
     }
   });
+  switcherOpen.classList.remove('open');
 }
 
 // light - dark mode 

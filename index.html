@@ -47,7 +47,7 @@
               <h3 class="hello">Olá, meu nome é <span class="name">Gustavo Xavier</span></h3>
               <h3 class="my-profession">Eu sou um <span class="typing"></span></h3>
               <p>Eu sou um Desenvolvedor Full-Stack Web e Mobile. Atualmente, estou Cursando Análise e Desenvolvimento de Sistemas na Universidade Católica de Brasília.</p>
-              <a href="#" class="btn">Baixar CV</a>
+              <a href="/img/cv-gustavo.pdf" download class="btn">Baixar CV</a>
             </div>
             <div class="home-img padd-15">
               <img src="img/hero.jpg">
@@ -308,16 +308,16 @@
               <h4>CSS Flexblog</h4>
             </div>
 
-            <!-- <div class="portfolio-item padd-15">
+            <div class="portfolio-item padd-15">
               <div class="portfolio-inner shadow-dark">
                 <div class="portfolio-img">
-                  <a href="">
-                    <img src="img/portfolio-img1.png" alt="">
+                  <a href="https://gusta-sx-angengtime.netlify.app/">
+                    <img src="img/portfolio-img4.png" alt="">
                   </a>
                 </div>
               </div>
-              <h4>Angular Task-To-Do</h4>
-            </div> -->
+              <h4>Angular English on Time</h4>
+            </div>
           </div>
         </div>
       </section>
@@ -360,16 +360,16 @@
           <h3 class="contact-title padd-15">me envie um e-mail</h3>
           <h4 class="contact-subtitle padd-15">Enviarei uma resposta</h4>
           <div class="row">
-            <div class="contact-form padd-15">
+            <form class="contact-form padd-15">
               <div class="row">
                 <div class="form-item col-6 padd-15">
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nome">
+                    <input type="text" id="name" class="form-control" placeholder="Nome">
                   </div>
                 </div>
                 <div class="form-item col-6 padd-15">
                   <div class="form-group">
-                    <input type="email" class="form-control" placeholder="E-mail">
+                    <input type="email" id="email" class="form-control" placeholder="E-mail">
                   </div>
                 </div>
               </div>
@@ -387,7 +387,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </section>
@@ -409,12 +409,12 @@
       <span data-color class="color-3" onclick="setActiveStyle('color-3')"></span>
       <span data-color class="color-4" onclick="setActiveStyle('color-4')"></span>
       <span data-color class="color-5" onclick="setActiveStyle('color-5')"></span>
-
     </div>
   </div>
 
 
   <!-- JS -->
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script src="js/accordion.js"></script>
   <script src="js/style-switcher.js"></script>
