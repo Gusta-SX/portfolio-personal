@@ -14,7 +14,7 @@ cd portfolio-personal
 
 // open the index.html file or use the Live Server extension
 ```
-Or by following this [link](https://gusta-sx-angtodo.netlify.app/)
+Or by following this [link](https://gusta-sx.netlify.app/)
 
 ## Conclusion
 Completed 🟢
