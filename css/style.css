@@ -723,6 +723,7 @@ h3.my-profession {
 .portfolio-item .imgBx img {
   max-width: 100%;
   border-radius: 4px;
+  cursor: pointer;
   box-shadow: 0px 2px 1px 1px #9b9b9b1f;
 }
 
@@ -747,6 +748,7 @@ h3.my-profession {
 }
 
 .portfolio-item:hover .portcontent h3 {
+  cursor: pointer;
   color: var(--text-black-900);
 }
 
@@ -972,6 +974,20 @@ h3.my-profession {
   .home-img::after,
   .home-img::before {
     display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .portfolio-item {
+    height: 300px;
+  }
+
+  .portfolio-item .portcontent {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    margin-top: 20px;
+    transition-delay: 1s;
   }
 }
 
