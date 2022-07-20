@@ -704,15 +704,15 @@ h3.my-profession {
   margin: 30px 10px;
   display: flex;
   flex-direction: column;
-  transition: .3s ease-in-out;
+  transition: .4s ease-in-out;
 }
 
 .portfolio-item:hover {
-  height: 300px;
+  height: 280px;
   transform: scale(1.02);
 }
 
-.portfolio-item .imgBx {
+.portfolio-item .portfolio-img {
   position: relative;
   width: 260px;
   height: 100px;
@@ -720,17 +720,14 @@ h3.my-profession {
   left: 20px;
 }
 
-.portfolio-item .imgBx img {
+.portfolio-item .portfolio-img img {
   max-width: 100%;
   border-radius: 4px;
   cursor: pointer;
-  box-shadow: 0px 2px 1px 1px #9b9b9b1f;
 }
 
-.portfolio-item .portcontent {
+.portfolio-item .port-content {
   position: relative;
-  margin-top: -200px;
-  display: none;
   padding: 10px 15px;
   text-align: center;
   visibility: hidden;
@@ -739,48 +736,22 @@ h3.my-profession {
   color: var(--text-black-700);
 }
 
-.portfolio-item:hover .portcontent {
+.portfolio-item:hover .port-content {
   visibility: visible;
   opacity: 1;
-  display: block;
   margin-top: 20px;
-  transition-delay: 1s;
+  transition-delay: .3s;
 }
 
-.portfolio-item:hover .portcontent h3 {
+.portfolio-item .port-content p {
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+.portfolio-item:hover .port-content h3 {
   cursor: pointer;
-  color: var(--text-black-900);
+  color: var(--text-black-700);
 }
-
-/* .portfolio .portfolio-item {
-  flex: 0 0 33.33%;
-  max-width: 33.33%;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: all .4s ease-in-out;
-}
-
-.portfolio .portfolio-item:hover {
-  transform: scale(1.02);
-}
-
-.portfolio .portfolio-item:hover h4 {
-  color: var(--skin-color);
-}
-
-.portfolio .portfolio-inner {
-  border: 5px solid var(--bg-black-100);
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.portfolio-inner img {
-  width: 100%;
-  display: block;
-} */
 
 /* CONTACT */
 .contact-title {
@@ -982,7 +953,7 @@ h3.my-profession {
     height: 300px;
   }
 
-  .portfolio-item .portcontent {
+  .portfolio-item .port-content {
     visibility: visible;
     opacity: 1;
     display: block;
