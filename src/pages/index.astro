@@ -1,0 +1,191 @@
+---
+import { getCollection } from "astro:content";
+import ProjectIcon from "../components/ProjectIcon.astro";
+import "../styles/global.css";
+import hero from "../../img/hero.jpg";
+
+const showPhoto = false;
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const heroSrc = showPhoto ? (typeof hero === "string" ? hero : hero.src) : "";
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gustavo Xavier</title>
+    <meta
+      name="description"
+      content="Desenvolvedor que cria soluções, com a praticidade no bolso. Formado em Análise e Desenvolvimento de Sistemas. Front, back e .NET."
+    />
+    <meta property="og:title" content="Gustavo Xavier" />
+    <meta
+      property="og:description"
+      content="Desenvolvedor que cria soluções, com a praticidade no bolso."
+    />
+    <meta property="og:type" content="website" />
+    {
+      showPhoto && (
+        <meta
+          property="og:image"
+          content={new URL(heroSrc, Astro.site ?? Astro.url)}
+        />
+      )
+    }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="nav" aria-label="Seções">
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <section class:list={["topo", { "sem-foto": !showPhoto }]} aria-labelledby="nome">
+        <div class="copy">
+          <h1 class="title-in" id="nome">Gustavo Xavier</h1>
+          <p class="phrase title-in">
+            Desenvolvedor que cria soluções, com a praticidade no bolso.
+          </p>
+          <p class="line title-in">
+            Formado em Análise e Desenvolvimento de Sistemas. Trabalho com
+            front, back e .NET.
+          </p>
+          <div class="actions title-in">
+            <a href="#projetos">Ver projetos</a>
+            <a class="email" href="mailto:gusta.dsx@gmail.com"
+              >gusta.dsx@gmail.com<span class="cursor" aria-hidden="true"></span></a
+            >
+          </div>
+        </div>
+        {
+          showPhoto && (
+            <div class="photo-wrap">
+              <img class="photo" src={heroSrc} alt="Gustavo Xavier" />
+            </div>
+          )
+        }
+      </section>
+
+      <section class="projects" id="projetos" aria-labelledby="projetos-titulo">
+        <h2 class="section-in animate-on-scroll" id="projetos-titulo">Projetos</h2>
+        <ul class="project-list">
+          {
+            projects.map((project, index) => (
+              <li>
+                <a
+                  class="card animate-on-scroll"
+                  style={`animation-delay: ${index * 100}ms`}
+                  href={project.data.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ProjectIcon name={project.data.icon} />
+                  <h3>{project.data.title}</h3>
+                  <p>{project.data.description}</p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="about section-in animate-on-scroll" id="sobre" aria-labelledby="sobre-titulo">
+        <h2 id="sobre-titulo">Sobre</h2>
+        <p>
+          Eu sou Gustavo Xavier, desenvolvedor full stack. Formado em Análise e
+          Desenvolvimento de Sistemas pela Universidade Católica de Brasília, no
+          fim de 2025. Crio soluções do front ao back. Os projetos desta página
+          são meus, separados do trabalho do dia a dia.
+        </p>
+        <ul class="facts">
+          <li>
+            <h3>Desenvolvedor full stack pleno</h3>
+            <p>Out 2022 — atualmente</p>
+            <p>
+              Front e back em soluções para redes de imobiliárias: sites, gestão
+              de imóveis e CRM.
+            </p>
+          </li>
+          <li>
+            <h3>Desenvolvedor back-end</h3>
+            <p>Tecnobile, startup. Mar 2020 — mai 2023</p>
+            <p>
+              Sites e aplicativos com Angular, TypeScript, JavaScript e
+              Firebase, além de manutenção, banco de dados e correção de
+              defeitos.
+            </p>
+          </li>
+          <li>
+            <h3>Análise e Desenvolvimento de Sistemas</h3>
+            <p>Universidade Católica de Brasília. 2021 — 2025. Concluído.</p>
+          </li>
+        </ul>
+        <ul class="skills" aria-label="Tecnologias">
+          <li>C#</li>
+          <li>.NET</li>
+          <li>ASP.NET</li>
+          <li>SQL Server</li>
+          <li>Dapper</li>
+          <li>Angular</li>
+          <li>TypeScript</li>
+          <li>JavaScript</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>Git</li>
+        </ul>
+      </section>
+
+      <section class="contact section-in animate-on-scroll" id="contato" aria-labelledby="contato-titulo">
+        <h2 id="contato-titulo">Contato</h2>
+        <ul class="contact-list">
+          <li><a href="mailto:gusta.dsx@gmail.com">gusta.dsx@gmail.com</a></li>
+          <li>
+            <a href="https://www.linkedin.com/in/gusta-dsx/">LinkedIn</a>
+          </li>
+          <li><a href="https://github.com/Gusta-SX">GitHub</a></li>
+        </ul>
+      </section>
+    </main>
+    <script>
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce) {
+        const pending = [...document.querySelectorAll(".animate-on-scroll")];
+        const reveal = () => {
+          const line = window.innerHeight * 0.92;
+          for (let i = pending.length - 1; i >= 0; i -= 1) {
+            if (pending[i].getBoundingClientRect().top < line) {
+              pending[i].classList.add("animate");
+              pending.splice(i, 1);
+            }
+          }
+        };
+
+        const copy = document.querySelector(".copy");
+        let ticking = false;
+        const onScroll = () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            reveal();
+            if (copy instanceof HTMLElement) {
+              const progress = Math.min(window.scrollY, 280) / 280;
+              copy.style.transform = `translateY(${(progress * -16).toFixed(2)}px)`;
+              copy.style.opacity = (1 - progress * 0.28).toFixed(3);
+            }
+            ticking = false;
+          });
+        };
+        reveal();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      }
+    </script>
+  </body>
+</html>
