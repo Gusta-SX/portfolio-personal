@@ -8,6 +8,16 @@ const showPhoto = false;
 const projects = (await getCollection("projects")).sort(
   (a, b) => a.data.order - b.data.order,
 );
+
+function destino(url: string) {
+  const parsed = new URL(url);
+  const host = parsed.hostname.replace(/^www\./, "");
+  if (host === "github.com") {
+    const repo = parsed.pathname.split("/").filter(Boolean).slice(0, 2).join("/");
+    return { acao: "Abrir no GitHub", detalhe: repo || host };
+  }
+  return { acao: "Abrir o site", detalhe: host };
+}
 const heroSrc = showPhoto ? (typeof hero === "string" ? hero : hero.src) : "";
 ---
 
@@ -42,23 +52,25 @@ const heroSrc = showPhoto ? (typeof hero === "string" ? hero : hero.src) : "";
     />
   </head>
   <body>
-    <main class="shell">
+    <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+    <main class="shell" id="conteudo">
       <nav class="nav" aria-label="Seções">
+        <a href="#projetos">Projetos</a>
         <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
       </nav>
 
       <section class:list={["topo", { "sem-foto": !showPhoto }]} aria-labelledby="nome">
         <div class="copy">
-          <h1 class="title-in" id="nome">Gustavo Xavier</h1>
-          <p class="phrase title-in">
+          <h1 id="nome">Gustavo Xavier</h1>
+          <p class="phrase">
             Desenvolvedor que cria soluções, com a praticidade no bolso.
           </p>
-          <p class="line title-in">
+          <p class="line">
             Formado em Análise e Desenvolvimento de Sistemas. Trabalho com
             front, back e .NET.
           </p>
-          <div class="actions title-in">
+          <div class="actions">
             <a href="#projetos">Ver projetos</a>
             <a class="email" href="mailto:gusta.dsx@gmail.com"
               >gusta.dsx@gmail.com<span class="cursor" aria-hidden="true"></span></a
@@ -75,29 +87,41 @@ const heroSrc = showPhoto ? (typeof hero === "string" ? hero : hero.src) : "";
       </section>
 
       <section class="projects" id="projetos" aria-labelledby="projetos-titulo">
-        <h2 class="section-in animate-on-scroll" id="projetos-titulo">Projetos</h2>
-        <ul class="project-list">
-          {
-            projects.map((project, index) => (
-              <li>
-                <a
-                  class="card animate-on-scroll"
-                  style={`animation-delay: ${index * 100}ms`}
-                  href={project.data.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ProjectIcon name={project.data.icon} />
-                  <h3>{project.data.title}</h3>
-                  <p>{project.data.description}</p>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+        <h2 id="projetos-titulo">Projetos</h2>
+        {
+          projects.length === 0 ? (
+            <p>Nenhum projeto publicado nesta página ainda.</p>
+          ) : (
+            <ul class="project-list">
+              {projects.map((project, index) => {
+                const item = destino(project.data.url);
+                return (
+                  <li>
+                    <a
+                      class="card"
+                      style={`--draw: ${Math.min(index, 4) * 90}ms`}
+                      href={project.data.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ProjectIcon name={project.data.icon} />
+                      <h3>{project.data.title}</h3>
+                      <p>{project.data.description}</p>
+                      <span class="destino">
+                        <span class="acao">{item.acao}</span>
+                        <span class="detalhe">{item.detalhe}</span>
+                      </span>
+                      <span class="sr-only">Abre em outra aba.</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          )
+        }
       </section>
 
-      <section class="about section-in animate-on-scroll" id="sobre" aria-labelledby="sobre-titulo">
+      <section class="about" id="sobre" aria-labelledby="sobre-titulo">
         <h2 id="sobre-titulo">Sobre</h2>
         <p>
           Eu sou Gustavo Xavier, desenvolvedor full stack. Formado em Análise e
@@ -143,7 +167,7 @@ const heroSrc = showPhoto ? (typeof hero === "string" ? hero : hero.src) : "";
         </ul>
       </section>
 
-      <section class="contact section-in animate-on-scroll" id="contato" aria-labelledby="contato-titulo">
+      <section class="contact" id="contato" aria-labelledby="contato-titulo">
         <h2 id="contato-titulo">Contato</h2>
         <ul class="contact-list">
           <li><a href="mailto:gusta.dsx@gmail.com">gusta.dsx@gmail.com</a></li>
@@ -155,36 +179,24 @@ const heroSrc = showPhoto ? (typeof hero === "string" ? hero : hero.src) : "";
       </section>
     </main>
     <script>
+      const cards = [...document.querySelectorAll(".card")];
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (!reduce) {
-        const pending = [...document.querySelectorAll(".animate-on-scroll")];
-        const reveal = () => {
-          const line = window.innerHeight * 0.92;
-          for (let i = pending.length - 1; i >= 0; i -= 1) {
-            if (pending[i].getBoundingClientRect().top < line) {
-              pending[i].classList.add("animate");
-              pending.splice(i, 1);
-            }
-          }
-        };
+      const mark = (card) => card.classList.add("present");
 
-        const copy = document.querySelector(".copy");
-        let ticking = false;
-        const onScroll = () => {
-          if (ticking) return;
-          ticking = true;
-          requestAnimationFrame(() => {
-            reveal();
-            if (copy instanceof HTMLElement) {
-              const progress = Math.min(window.scrollY, 280) / 280;
-              copy.style.transform = `translateY(${(progress * -16).toFixed(2)}px)`;
-              copy.style.opacity = (1 - progress * 0.28).toFixed(3);
+      if (reduce || !("IntersectionObserver" in window)) {
+        cards.forEach(mark);
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              mark(entry.target);
+              observer.unobserve(entry.target);
             }
-            ticking = false;
-          });
-        };
-        reveal();
-        window.addEventListener("scroll", onScroll, { passive: true });
+          },
+          { rootMargin: "0px 0px -8% 0px" },
+        );
+        cards.forEach((card) => observer.observe(card));
       }
     </script>
   </body>
